@@ -17,12 +17,13 @@ package main
 
 import (
   "context"
+  "os"
 
   "github.com/andy/onwater"
 )
 
 func main() {
-  client := onwater.New("your-api-key") // "" for an unpaid API Key with rate limits
+  client := onwater.New(os.Getenv("ONWATER_API_KEY")) // "" for an unpaid API Key with rate limits
 
   isWater, err := client.OnWater(context.Background(), 55.753675, 37.621339)
   if err != nil {

@@ -21,7 +21,7 @@ func New(apiKey string) *Client {
 }
 
 // OnWater returns true if lat/lng are on water
-func (c *Client) OnWater(ctx context.Context, lat float32, lng float32) (bool, error) {
+func (c *Client) OnWater(ctx context.Context, lat float64, lng float64) (bool, error) {
 	url := fmt.Sprintf("%s/%v,%v", apiEndpoint, lat, lng)
 	if c.apiKey != "" {
 		url += "?access_token=" + c.apiKey
@@ -60,7 +60,7 @@ func (c *Client) OnWater(ctx context.Context, lat float32, lng float32) (bool, e
 }
 
 // OnLand returns true if lat/lng are on land
-func (c *Client) OnLand(ctx context.Context, lat float32, lng float32) (bool, error) {
+func (c *Client) OnLand(ctx context.Context, lat float64, lng float64) (bool, error) {
 	ok, err := c.OnWater(ctx, lat, lng)
 	if err != nil {
 		return ok, err
