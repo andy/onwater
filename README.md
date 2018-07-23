@@ -1,6 +1,6 @@
 # onwater.io golang API wrapper
 
-[![godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/andy/onwater) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/andy/onwater/master/LICENSE)
+[![godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/andy/onwater) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/andy/onwater/master/LICENSE) [![Build Status](https://travis-ci.org/andy/onwater.svg?branch=master)](https://travis-ci.org/andy/onwater)
 
 [Onwater.io](https://onwater.io) is an API for determining if a point (latitude and longitude) is on water or land. This library is a small wrapper around for working with that API.
 
