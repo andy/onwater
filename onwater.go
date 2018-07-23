@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 const apiEndpoint = "https://api.onwater.io/api/v1/results/"
@@ -15,12 +16,16 @@ type Client struct {
 	apiKey string
 }
 
-// New client
+// New client initalizes and returns new Client object that you can use to make API calls.
+// If apiKey is empty, it tries to load key from $ONWATER_API_KEY environment variable.
 func New(apiKey string) *Client {
+	if apiKey == "" {
+		apiKey = os.Getenv("ONWATER_API_KEY")
+	}
 	return &Client{apiKey}
 }
 
-// OnWater returns true if lat/lng are on water
+// OnWater makes an API call and returns true if lat/lng is on water.
 func (c *Client) OnWater(ctx context.Context, lat float64, lng float64) (bool, error) {
 	url := fmt.Sprintf("%s/%v,%v", apiEndpoint, lat, lng)
 	if c.apiKey != "" {
@@ -59,7 +64,7 @@ func (c *Client) OnWater(ctx context.Context, lat float64, lng float64) (bool, e
 	return reply.Water, nil
 }
 
-// OnLand returns true if lat/lng are on land
+// OnLand returns true if lat/lng is on land
 func (c *Client) OnLand(ctx context.Context, lat float64, lng float64) (bool, error) {
 	ok, err := c.OnWater(ctx, lat, lng)
 	if err != nil {
